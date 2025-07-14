@@ -12,6 +12,7 @@ model JobVacancy {
   jobName   String
   jobDesc   String
   jobReq    String
+  jobPlace  String
   approved  Boolean   @default(false)
 
   createdBy String    
