@@ -11,7 +11,6 @@ export class JobVacancyService {
         jobName: createJobVacancyDto.jobName,
         jobDesc: createJobVacancyDto.jobDesc,
         jobReq: createJobVacancyDto.jobReq,
-        jobPlace: createJobVacancyDto.jobPlace,
         createdBy: createJobVacancyDto.createdBy,
       },
     });
