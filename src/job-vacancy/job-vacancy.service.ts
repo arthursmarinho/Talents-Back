@@ -11,13 +11,14 @@ export class JobVacancyService {
         jobName: createJobVacancyDto.jobName,
         jobDesc: createJobVacancyDto.jobDesc,
         jobReq: createJobVacancyDto.jobReq,
+        jobPlace: createJobVacancyDto.jobPlace,
         createdBy: createJobVacancyDto.createdBy,
       },
     });
     return vacancy;
   }
 
-  listVacancies(createdBy?: string) {
+  listVacanciesById(createdBy?: string) {
     const where = createdBy ? { createdBy } : {};
     return this.prisma.jobVacancy.findMany({
       where,
@@ -25,6 +26,10 @@ export class JobVacancyService {
         applications: true,
       },
     });
+  }
+
+  listVacancies() {
+    return this.prisma.jobVacancy.findMany();
   }
 
   async deleteVacancy(id: number) {

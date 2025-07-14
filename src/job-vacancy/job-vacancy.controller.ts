@@ -21,8 +21,13 @@ export class JobVacancyController {
   }
 
   @Get('vacancy')
-  listVacancies(@Query('createdBy') createdBy?: string) {
-    return this.jobVacancyService.listVacancies(createdBy);
+  listVacanciesById(@Query('createdBy') createdBy?: string) {
+    return this.jobVacancyService.listVacanciesById(createdBy);
+  }
+
+  @Get()
+  listVacancies() {
+    return this.jobVacancyService.listVacancies();
   }
 
   @Delete(':id')
