@@ -13,6 +13,7 @@ CREATE TABLE "JobVacancy" (
     "jobName" TEXT NOT NULL,
     "jobDesc" TEXT NOT NULL,
     "jobReq" TEXT NOT NULL,
+    "jobPlace" TEXT NOT NULL
     "approved" BOOLEAN NOT NULL DEFAULT false,
     "createdBy" TEXT NOT NULL,
 

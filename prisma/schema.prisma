@@ -12,7 +12,7 @@ model JobVacancy {
   jobName   String
   jobDesc   String
   jobReq    String
- jobPlace String @default("Não informado")
+  jobPlace String @default("Não informado")
   approved  Boolean   @default(false)
 
   createdBy String    
