@@ -20,13 +20,22 @@ model JobVacancy {
   applications JobApplication[]
 }
 
+enum ApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 model JobApplication {
-  id          Int      @id @default(autoincrement())
+  id          Int               @id @default(autoincrement())
   jobId       Int
-  candidateId String   
+  candidateId String
   resumeData  Bytes
-  createdAt   DateTime @default(now())
+  createdAt   DateTime          @default(now())
+  status      ApplicationStatus @default(PENDING) 
 
   jobVacancy  JobVacancy @relation(fields: [jobId], references: [id])
+
+  @@unique([jobId, candidateId]) 
 }
 

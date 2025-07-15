@@ -6,9 +6,10 @@ import { JobVacancyController } from './job-vacancy/job-vacancy.controller';
 import { JobVacancyService } from './job-vacancy/job-vacancy.service';
 import { JobApplicationController } from './job-application/job-application.controller';
 import { JobApplicationService } from './job-application/job-application.service';
+import { JobApplicationModule } from './job-application/job-application.module';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [PrismaModule, JobApplicationModule],
   controllers: [AppController, JobVacancyController, JobApplicationController],
   providers: [AppService, JobVacancyService, JobApplicationService],
 })
