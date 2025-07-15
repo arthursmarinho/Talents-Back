@@ -1,5 +1,5 @@
 export class CreateJobApplicationDto {
   jobId: number;
-  candidateId: number;
+  candidateId: string;
   resumeUrl: string;
 }

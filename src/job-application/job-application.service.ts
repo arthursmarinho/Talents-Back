@@ -3,7 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 interface CreateApplicationDto {
   jobId: number;
-  candidateId: number;
+  candidateId: string; // ALTERADO PARA STRING
   resumeBuffer: Buffer;
 }
 

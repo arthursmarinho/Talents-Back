@@ -23,7 +23,7 @@ model JobVacancy {
 model JobApplication {
   id          Int      @id @default(autoincrement())
   jobId       Int
-  candidateId Int
+  candidateId String   
   resumeData  Bytes
   createdAt   DateTime @default(now())
 

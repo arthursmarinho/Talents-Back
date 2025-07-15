@@ -25,15 +25,14 @@ export class JobApplicationController {
     }
 
     const jobIdNum = Number(body.jobId);
-    const candidateIdNum = Number(body.candidateId);
 
-    if (isNaN(jobIdNum) || isNaN(candidateIdNum)) {
-      throw new BadRequestException('jobId ou candidateId inválido');
+    if (isNaN(jobIdNum)) {
+      throw new BadRequestException('jobId inválido');
     }
 
     return await this.jobApplicationService.createApplication({
       jobId: jobIdNum,
-      candidateId: candidateIdNum,
+      candidateId: body.candidateId,
       resumeBuffer: file.buffer,
     });
   }
