@@ -59,10 +59,15 @@ export class JobApplicationService {
       throw new NotFoundException('Vaga não encontrada');
     }
 
-    return this.prisma.jobApplication.findMany({
+    const applications = await this.prisma.jobApplication.findMany({
       where: { jobId },
       orderBy: { createdAt: 'desc' },
     });
+
+    return applications.map((app) => ({
+      ...app,
+      resumeData: app.resumeData ? Array.from(app.resumeData) : null,
+    }));
   }
 
   async updateApplicationStatus(id: number, status: ApplicationStatus) {
