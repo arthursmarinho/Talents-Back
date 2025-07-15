@@ -33,6 +33,12 @@ export class JobVacancyService {
   }
 
   async deleteVacancy(id: number) {
-    return this.prisma.jobVacancy.delete({ where: { id } });
+    await this.prisma.jobApplication.deleteMany({
+      where: { jobId: id },
+    });
+
+    return this.prisma.jobVacancy.delete({
+      where: { id },
+    });
   }
 }
