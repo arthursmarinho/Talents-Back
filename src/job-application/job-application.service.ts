@@ -1,22 +1,31 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { CreateJobApplicationDto } from 'dto/create-job-application-dto';
+import { Injectable, BadRequestException } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+
+interface CreateApplicationDto {
+  jobId: number;
+  candidateId: number;
+  resumeBuffer: Buffer;
+}
+
 @Injectable()
 export class JobApplicationService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {}
 
-  async create(createJobApplicationDto: CreateJobApplicationDto) {
-    const application = await this.prisma.jobApplication.create({
+  async createApplication(data: CreateApplicationDto) {
+    const jobExists = await this.prisma.jobVacancy.findUnique({
+      where: { id: data.jobId },
+    });
+
+    if (!jobExists) {
+      throw new BadRequestException('Vaga não encontrada');
+    }
+
+    return this.prisma.jobApplication.create({
       data: {
-        jobId: createJobApplicationDto.jobId,
-        candidateId: createJobApplicationDto.candidateId,
-        resumeUrl: createJobApplicationDto.resumeUrl,
+        jobId: data.jobId,
+        candidateId: data.candidateId,
+        resumeData: data.resumeBuffer,
       },
     });
-    return application;
-  }
-
-  async findAll() {
-    return this.prisma.jobApplication.findMany();
   }
 }

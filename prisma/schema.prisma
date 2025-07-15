@@ -21,11 +21,12 @@ model JobVacancy {
 }
 
 model JobApplication {
-  id          Int       @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   jobId       Int
-  candidateId String    
-  resumeUrl   String
-  createdAt   DateTime  @default(now())
+  candidateId Int
+  resumeData  Bytes
+  createdAt   DateTime @default(now())
 
-  job         JobVacancy @relation(fields: [jobId], references: [id])
+  jobVacancy  JobVacancy @relation(fields: [jobId], references: [id])
 }
+
