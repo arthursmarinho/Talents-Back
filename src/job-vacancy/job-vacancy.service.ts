@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateJobVacancyDto } from 'dto/create-job-vacancy-dto';
+import { CreateJobVacancyDto } from 'job-vacancy/dto/create-job-vacancy-dto';
 @Injectable()
 export class JobVacancyService {
   constructor(private readonly prisma: PrismaService) {}

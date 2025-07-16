@@ -13,7 +13,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { JobApplicationService } from './job-application.service';
 import { File as MulterFile } from 'multer';
-import { UpdateJobApplicationDto } from 'dto/update-job-application.dto';
+import { UpdateJobApplicationDto } from 'job-application/dto/update-job-application.dto';
 @Controller('job-applications')
 export class JobApplicationController {
   constructor(private readonly jobApplicationService: JobApplicationService) {}

@@ -3,9 +3,9 @@ import {
   BadRequestException,
   NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateJobApplicationDto } from 'dto/create-job-application-dto';
-import { UpdateJobApplicationDto } from 'dto/update-job-application.dto';
+import { PrismaService } from 'prisma/prisma.service';
+import { CreateJobApplicationDto } from 'job-application/dto/create-job-application-dto';
+import { UpdateJobApplicationDto } from 'job-application/dto/update-job-application.dto';
 import { ApplicationStatus } from '@prisma/client';
 
 interface CreateApplicationServiceDto {

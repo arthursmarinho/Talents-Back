@@ -9,7 +9,7 @@ import {
   Req,
 } from '@nestjs/common';
 import { JobVacancyService } from './job-vacancy.service';
-import { CreateJobVacancyDto } from 'dto/create-job-vacancy-dto';
+import { CreateJobVacancyDto } from 'job-vacancy/dto/create-job-vacancy-dto';
 
 @Controller('job-vacancies')
 export class JobVacancyController {
