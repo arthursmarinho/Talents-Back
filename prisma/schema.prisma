@@ -8,16 +8,26 @@ datasource db {
 }
 
 model JobVacancy {
-  id        Int       @id @default(autoincrement())
-  jobName   String
-  jobDesc   String
-  jobReq    String
-  jobPlace  String?
-  approved  Boolean   @default(false)
-
-  createdBy String    
-
+  id           Int              @id @default(autoincrement())
+  jobName      String
+  jobDesc      String
+  jobReq       String
+  jobPlace     String?
+  approved     Boolean          @default(false)
+  createdBy    String
   applications JobApplication[]
+}
+
+model JobApplication {
+  id          Int               @id @default(autoincrement())
+  jobId       Int
+  createdAt   DateTime          @default(now())
+  resumeData  Bytes
+  candidateId String
+  status      ApplicationStatus @default(PENDING)
+  jobVacancy  JobVacancy        @relation(fields: [jobId], references: [id])
+
+  @@unique([jobId, candidateId])
 }
 
 enum ApplicationStatus {
@@ -25,17 +35,3 @@ enum ApplicationStatus {
   APPROVED
   REJECTED
 }
-
-model JobApplication {
-  id          Int               @id @default(autoincrement())
-  jobId       Int
-  candidateId String
-  resumeData  Bytes
-  createdAt   DateTime          @default(now())
-  status      ApplicationStatus @default(PENDING) 
-
-  jobVacancy  JobVacancy @relation(fields: [jobId], references: [id])
-
-  @@unique([jobId, candidateId]) 
-}
-
